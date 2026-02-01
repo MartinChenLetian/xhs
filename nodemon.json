@@ -1,0 +1,9 @@
+{
+  "watch": ["."],
+  "ext": "js,json,env",
+  "ignore": ["node_modules"],
+  "delay": "200",
+  "events": {
+    "restart": "node scripts/nodemon-restart.js"
+  }
+}
