@@ -7,7 +7,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon --config nodemon.json index.js"
+    "dev": "nodemon --config nodemon.json index.js",
+    "build": "vite build"
   },
   "dependencies": {
     "cors": "^2.8.6",
