@@ -20,7 +20,8 @@
     "url": "^0.11.4"
   },
   "devDependencies": {
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "vite": "^7.2.4"
   },
   "keywords": [],
   "author": "",
