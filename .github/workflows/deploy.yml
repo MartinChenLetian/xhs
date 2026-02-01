@@ -19,11 +19,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
       - run: npm ci
       - run: npm run build --if-present
+      - name: Ensure dist exists
+        run: |
+          mkdir -p dist
+          if [ ! -f dist/index.html ]; then
+            cat > dist/index.html <<'EOF'
+            <!doctype html>
+            <html lang="zh-CN">
+              <head>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <title>MBTI Backfront</title>
+              </head>
+              <body>
+                <h1>MBTI Backfront</h1>
+                <p>当前仓库没有生成静态产物，已自动创建占位页面。</p>
+              </body>
+            </html>
+            EOF
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -35,17 +56,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Install dependencies
-        run: npm ci
-
       - id: deployment
         name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4

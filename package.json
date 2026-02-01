@@ -7,7 +7,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon --config nodemon.json index.js"
+    "dev": "nodemon --config nodemon.json index.js",
+    "build": "npm run clean && npm run build:client && npm run build:server",
+    "build:client": "cd client && npm install && npm run build",
+    "build:server": "echo \"No server build step defined\"",
+    "clean": "rm -rf client/build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "cors": "^2.8.6",
